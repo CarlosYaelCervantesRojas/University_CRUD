@@ -36,11 +36,21 @@
                         Home
                     </p>
                 </div>
-                <div class="flex items-center hover:cursor-pointer">
+                <div id="out" class="flex items-center hover:cursor-pointer">
                     <p>Administrador</p>
                     <div class="w-5 h-5">
-                        <img src="../../PFN3/assets/expand_more.svg" alt="more" class="h-full w-full">
+                        <img src="../../PFN3/assets/expand_more.svg" alt="more" id="arrow" class="h-full w-full">
                     </div>
+                </div>
+                <div id="logout" class="absolute top-10 right-5 hidden">
+                    <a href="#" class="flex items-center justify-evenly border bg-white rounded-md px-5 py-2 hover:cursor-pointer"> 
+                        <div class="w-5 h-5">
+                            <img src="../../PFN3/assets/logout.svg" alt="logout" class="h-full w-full">
+                        </div>
+                        <p class="text-red-600">
+                            Logout
+                        </p>
+                    </a>
                 </div>
             </header>
             <article class="font-slab">
