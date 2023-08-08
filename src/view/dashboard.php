@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,12 @@
     <script src="./js/navBar.js" defer></script>
     <title>Dashboard</title>
 </head>
-<body>
 
+<body>
+    <?php
+    session_start();
+    // print_r($_SESSION);
+    ?>
     <main class="h-screen bg-slate-100 sm:flex">
         <nav id="nav" class="absolute z-10 h-screen w-screen bg-slate-700 font-slab text-slate-100 hidden sm:w-1/4 sm:static">
             <div class="flex items-center p-5 border-b-2 justify-between sm:justify-evenly">
@@ -25,6 +30,131 @@
                     <img src="../../PFN3/assets/close.svg" alt="close" class="h-full w-full">
                 </div>
             </div>
+            <div class="flex justify-center items-center h-24 border-b-2">
+                <?php
+                switch ($_SESSION['rol']) {
+                    case 1:
+                        echo "<p>Administrador</p>";
+                        break;
+                    case 2:
+                        echo "<p>Maestro</p>";
+                        break;
+                    case 3:
+                        echo "<p>Alumno</p>";
+                        break;
+
+                    default:
+                        echo "<p>Administrador</p>";
+                        break;
+                }
+                ?>
+            </div>
+            <div class="flex flex-col items-center">
+                <h3 class="py-5 text-xl">
+                    Menu
+                    <?php
+                    switch ($_SESSION['rol']) {
+                        case 1:
+                            echo "Administración";
+                            break;
+                        case 2:
+                            echo "Maestros";
+                            break;
+                        case 3:
+                            echo "Alumno";
+                            break;
+
+                        default:
+                            echo "Administrador";
+                            break;
+                    }
+                    ?>
+                </h3>
+
+                <?php
+                switch ($_SESSION['rol']) {
+                    case 1:
+                ?>
+                        <ul class="w-full flex flex-col gap-5">
+
+                            <li>
+                                <a href="../controller/read/permisos_read.php" class="flex items-center">
+                                    <div class="h-10 w-10 mx-5">
+                                        <img src="../../PFN3/assets/manage.svg" alt="manage" class="h-full w-full">
+                                    </div>
+                                    <p>Permisos</p>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="../controller/read/maestros_read.php" class="flex items-center">
+                                    <div class="h-10 w-10 mx-5">
+                                        <img src="../../PFN3/assets/maestro.svg" alt="maestro" class="h-full w-full">
+                                    </div>
+                                    <p>Maestros</p>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="../controller/read/alumnos_read.php" class="flex items-center">
+                                    <div class="h-10 w-10 mx-5">
+                                        <img src="../../PFN3/assets/alumno.svg" alt="alumnos" class="h-full w-full">
+                                    </div>
+                                    <p>Alumnos</p>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="../controller/read/clases_read.php" class="flex items-center">
+                                    <div class="h-10 w-10 mx-5">
+                                        <img src="../../PFN3/assets/clases.svg" alt="clases" class="h-full w-full">
+                                    </div>
+                                    <p>Clases</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                <?php
+                        break;
+                    case 2:
+                ?>
+                        <ul class="w-full flex flex-col gap-5">
+                            <li>
+                                <a href="../controller/read/alumnos_read.php" class="flex items-center">
+                                    <div class="h-10 w-10 mx-5">
+                                        <img src="../../PFN3/assets/alumno.svg" alt="alumnos" class="h-full w-full">
+                                    </div>
+                                    <p>Alumnos</p>
+                                </a>
+                            </li>
+                        </ul>
+                <?php
+                        break;
+                    case 3:
+                ?>
+                        <ul class="w-full flex flex-col gap-5">
+                            <li>
+                                <a href="" class="flex items-center">
+                                    <div class="h-10 w-10 mx-5">
+                                        <img src="../../PFN3/assets/calificaciones.svg" alt="alumnos" class="h-full w-full">
+                                    </div>
+                                    <p>Ver calificaciones</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" class="flex items-center">
+                                    <div class="h-10 w-10 mx-5">
+                                        <img src="../../PFN3/assets/inscri.svg" alt="alumnos" class="h-full w-full">
+                                    </div>
+                                    <p>Administrar Clases</p>
+                                </a>
+                            </li>
+                        </ul>
+                <?php
+                }
+                ?>
+
+            </div>
         </nav>
         <section class="relative z-0 sm:static sm:w-full">
             <header class="border flex justify-between font-slab px-2 bg-white">
@@ -37,13 +167,29 @@
                     </p>
                 </div>
                 <div id="out" class="flex items-center hover:cursor-pointer">
-                    <p>Administrador</p>
+                    <?php
+                    switch ($_SESSION['rol']) {
+                        case 1:
+                            echo "<p>Administrador</p>";
+                            break;
+                        case 2:
+                            echo "<p>Maestro</p>";
+                            break;
+                        case 3:
+                            echo "<p>Alumno</p>";
+                            break;
+
+                        default:
+                            echo "<p>Administrador</p>";
+                            break;
+                    }
+                    ?>
                     <div class="w-5 h-5">
                         <img src="../../PFN3/assets/expand_more.svg" alt="more" id="arrow" class="h-full w-full">
                     </div>
                 </div>
                 <div id="logout" class="absolute top-10 right-5 hidden">
-                    <a href="#" class="flex items-center justify-evenly border bg-white rounded-md px-5 py-2 hover:cursor-pointer"> 
+                    <a href="../model/logout.php" class="flex items-center justify-evenly border bg-white rounded-md px-5 py-2 hover:cursor-pointer">
                         <div class="w-5 h-5">
                             <img src="../../PFN3/assets/logout.svg" alt="logout" class="h-full w-full">
                         </div>
@@ -60,7 +206,7 @@
                 <div class="bg-white border m-5 rounded-md p-4">
                     <h3>
                         <strong>
-                            Bienvenido 
+                            Bienvenido
                         </strong>
                     </h3>
                     <p>
@@ -70,6 +216,7 @@
             </article>
         </section>
     </main>
-    
+
 </body>
+
 </html>
