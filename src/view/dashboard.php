@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    if ($_SESSION['rol']) {
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,10 +17,7 @@
 </head>
 
 <body>
-    <?php
-    session_start();
-    // print_r($_SESSION);
-    ?>
+
     <main class="h-screen bg-slate-100 sm:flex">
         <nav id="nav" class="absolute z-10 h-screen w-screen bg-slate-700 font-slab text-slate-100 hidden sm:w-1/4 sm:static">
             <div class="flex items-center p-5 border-b-2 justify-between sm:justify-evenly">
@@ -220,3 +221,9 @@
 </body>
 
 </html>
+
+<?php
+} else {
+    header("Location: ../index.php");
+}   
+?>

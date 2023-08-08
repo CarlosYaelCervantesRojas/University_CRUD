@@ -4,5 +4,5 @@
     $mdb = null;
     session_start();
     session_destroy();
-    header('Location: /src/view/login.php');
+    header('Location: /src/index.php');
 ?>
