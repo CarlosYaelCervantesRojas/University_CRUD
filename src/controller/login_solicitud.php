@@ -8,7 +8,7 @@
 
         $_SESSION['campoVacio'] = true;
 
-        header("Location: /src/view/login.php");
+        header("Location: /src/index.php");
     } else {
 
     require_once($_SERVER['DOCUMENT_ROOT'] . "/src/model/connection_DB.php");
@@ -38,14 +38,14 @@
             unset($_SESSION['incorrecto']);
             $_SESSION['status'] = true;
 
-            header("Location: /src/view/login.php");
+            header("Location: /src/index.php");
             
         } else {
             
             unset($_SESSION['campoVacio']);
             $_SESSION['incorrecto'] = true;
 
-            header("Location: /src/view/login.php");
+            header("Location: /src/index.php");
         }
 
     } catch (PDOException $e) {

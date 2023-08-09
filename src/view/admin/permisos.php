@@ -14,22 +14,39 @@
 session_start();
 // print_r($_SESSION['usuarios']);
 extract($_SESSION);
+
+require_once($_SERVER['DOCUMENT_ROOT'] . "/src/controller/read/permisos_read.php");
+
+extract($info);
 ?>
 
 <body>
-    <main class="w-screen">
-        <table class="font-slab">
+    <main class="w-screen h-screen bg-slate-300 flex flex-col items-center">
+        <a href="../dashboard.php" class="flex w-full p-5 font-slab items-center">
+            <div class="w-5 h-5">
+                <img src="../../../PFN3/assets/back.svg" alt="back" class="h-full w-full">
+            </div>
+            Volver
+        </a>
+        <table class="font-slab table-fixed w-11/12 overflow-x-auto block">
             <tr class="text-slate-100">
-                <th class="bg-slate-700">ID</th>
-                <th class="bg-slate-700">Correo/Usuario</th>
-                <th class="bg-slate-700">Permiso</th>
-                <th class="bg-slate-700">Estado</th>
-                <th class="bg-slate-700">Acción</th>
+                <th class="bg-slate-700 px-3">ID</th>
+                <th class="bg-slate-700 px-5">Correo/Usuario</th>
+                <th class="bg-slate-700 px-5">Permiso</th>
+                <th class="bg-slate-700 px-5">Estado</th>
+                <th class="bg-slate-700 px-3">Acción</th>
             </tr>
-            <?php foreach ($usuarios as $persona) { ?>
-                <tr>
+            <?php foreach ($info as $persona) { ?>
+                <tr class="text-center bg-slate-100 border border-slate-700">
                     <td><?php echo $persona['id_user_login']; ?></td>
-                    <td><?php echo $persona['correo']; ?></td>
+                    <td>
+                        <form action="./editar_permisos.php" method="post">
+                            <input type="email" name="correo" id="correo" readonly value="
+                            <?php echo $persona['correo']; ?>
+                            "
+                            class="bg-transparent text-center focus:outline-none"
+                        >
+                    </td>
                     <td>
                         <?php 
                             switch ($persona['rol']) {
@@ -49,7 +66,7 @@ extract($_SESSION);
                         <?php 
                             switch ($persona['status']) {
                                 case 1:
-                                    echo "Permitido";
+                                    echo "Activo";
                                     break;
                                 case 0:
                                     echo "Bloqueado";
@@ -57,13 +74,17 @@ extract($_SESSION);
                             }
                         ?>
                     </td>
-                    <td>
-                        
+                    <td class="flex justify-center items-center">
+                        <button type="submit" class="h-7 w-7 hover:cursor-pointer">
+                            <img src="../../../PFN3/assets/edit.svg" alt="edit" class="h-full w-full">
+                        </button>
+                        </form>
                     </td>
                 </tr>
             <?php } ?>
 
         </table>
+
     </main>
 </body>
 

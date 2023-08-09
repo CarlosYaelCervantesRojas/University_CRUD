@@ -79,7 +79,7 @@
                         <ul class="w-full flex flex-col gap-5">
 
                             <li>
-                                <a href="../controller/read/permisos_read.php" class="flex items-center">
+                                <a href="./admin/permisos.php" class="flex items-center">
                                     <div class="h-10 w-10 mx-5">
                                         <img src="../../PFN3/assets/manage.svg" alt="manage" class="h-full w-full">
                                     </div>
@@ -88,7 +88,7 @@
                             </li>
 
                             <li>
-                                <a href="../controller/read/maestros_read.php" class="flex items-center">
+                                <a href="./admin/maestros.php" class="flex items-center">
                                     <div class="h-10 w-10 mx-5">
                                         <img src="../../PFN3/assets/maestro.svg" alt="maestro" class="h-full w-full">
                                     </div>
