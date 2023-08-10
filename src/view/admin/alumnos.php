@@ -11,6 +11,8 @@
     <title>Administrar Alumnos</title>
 </head>
 <?php
+session_start();
+
 require_once($_SERVER['DOCUMENT_ROOT'] . "/src/controller/read/alumnos_read.php");
 
 extract($alumnos);
@@ -31,7 +33,7 @@ extract($alumnos);
                 <th class="bg-slate-700 px-5">Nombre</th>
                 <th class="bg-slate-700 px-5">Apellido</th>
                 <th class="bg-slate-700 px-5">Dirección</th>
-                <th class="bg-slate-700 px-3">Acciones</th>
+                <th id="acciones" class="bg-slate-700 px-3">Acciones</th>
             </tr>
             <?php foreach ($alumnos as $persona) { ?>
                 <tr class="text-center bg-slate-100 border border-slate-700">
@@ -55,7 +57,7 @@ extract($alumnos);
                             <input type="text" name="direccion" readonly value="<?php echo $persona['direccion']; ?>" class="bg-transparent text-center focus:outline-none">
                         </td>
                         <input type="number" name="dni" value="<?php echo $persona['dni'];?>" class="hidden">
-                        <td class="flex justify-center items-center">
+                        <td class="botonAcciones" class="flex justify-center items-center">
                             <button type="submit" class="h-7 w-7 hover:cursor-pointer">
                                 <img src="../../../PFN3/assets/edit.svg" alt="edit" class="h-full w-full">
                             </button>
@@ -66,7 +68,7 @@ extract($alumnos);
 
         </table>
         
-        <div class="w-full pt-5 flex justify-center">
+        <div id="botonCrear" class="w-full pt-5 flex justify-center">
             <a href="./create/crear_alumno.php" class="bg-blue-500 font-slab text-slate-200 rounded-lg px-5 py-1 mt-2">
                 Crear Alumno
             </a>
@@ -74,5 +76,28 @@ extract($alumnos);
 
     </main>
 </body>
+
+                <?php
+                    if ($_SESSION['rol'] == 2) {
+                ?>
+                    <script>
+                        let acciones = document.getElementById('acciones');
+                        let botonesAcciones = document.querySelectorAll('.botonAcciones');
+                        let botonCrear = document.getElementById('botonCrear');
+
+                        function ocultar (elemento){
+                            elemento.classList.add('hidden');
+                        }
+                        ocultar(acciones);
+                        ocultar(botonCrear);                        
+
+                        const botones = [...botonesAcciones];
+                        botones.forEach(boton => {
+                            boton.classList.add('hidden');
+                        });
+                    </script>
+                <?php
+                    }
+                ?>
 
 </html>

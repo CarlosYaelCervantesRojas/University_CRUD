@@ -121,7 +121,7 @@
                 ?>
                         <ul class="w-full flex flex-col gap-5">
                             <li>
-                                <a href="../controller/read/alumnos_read.php" class="flex items-center">
+                                <a href="./admin/alumnos.php" class="flex items-center">
                                     <div class="h-10 w-10 mx-5">
                                         <img src="../../PFN3/assets/alumno.svg" alt="alumnos" class="h-full w-full">
                                     </div>
