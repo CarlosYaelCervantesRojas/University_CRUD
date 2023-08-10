@@ -15,8 +15,6 @@
 <body>
 <?php
 session_start();
-// print_r($_SESSION);
-// print_r($_POST);
 extract($_POST);
 ?>
     <main class="w-screen h-screen flex flex-col items-center bg-slate-200">

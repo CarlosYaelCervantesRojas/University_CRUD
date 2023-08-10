@@ -97,7 +97,7 @@
                             </li>
 
                             <li>
-                                <a href="../controller/read/alumnos_read.php" class="flex items-center">
+                                <a href="./admin/alumnos.php" class="flex items-center">
                                     <div class="h-10 w-10 mx-5">
                                         <img src="../../PFN3/assets/alumno.svg" alt="alumnos" class="h-full w-full">
                                     </div>
@@ -106,7 +106,7 @@
                             </li>
 
                             <li>
-                                <a href="../controller/read/clases_read.php" class="flex items-center">
+                                <a href="./admin/clases.php" class="flex items-center">
                                     <div class="h-10 w-10 mx-5">
                                         <img src="../../PFN3/assets/clases.svg" alt="clases" class="h-full w-full">
                                     </div>

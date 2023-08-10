@@ -1009,7 +1009,19 @@ video {
     width: 100%;
   }
 
+  .sm\:justify-start {
+    justify-content: flex-start;
+  }
+
   .sm\:justify-evenly {
     justify-content: space-evenly;
+  }
+
+  .sm\:pl-10 {
+    padding-left: 2.5rem;
+  }
+
+  .sm\:pl-16 {
+    padding-left: 4rem;
   }
 }

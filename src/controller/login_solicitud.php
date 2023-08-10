@@ -19,8 +19,6 @@
         $resultado = $mdb -> query($buscarUsuario);
 
         $user = $resultado->fetch(PDO::FETCH_ASSOC);
-
-        // print_r($user);
         
         if ($user && $user['status'] === 1) {
             unset($_SESSION['campoVacio']);
@@ -29,7 +27,6 @@
             extract($user);
 
             $_SESSION['rol'] = $rol;
-            // print_r($_SESSION);
 
             header("Location: /src/view/dashboard.php");
             

@@ -8,17 +8,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;400;900&display=swap" rel="stylesheet">
     <link href="/dist/output.css" rel="stylesheet">
-    <title>Administrar Maestros</title>
+    <title>Administrar Alumnos</title>
 </head>
 <?php
-session_start();
-extract($_SESSION);
+require_once($_SERVER['DOCUMENT_ROOT'] . "/src/controller/read/alumnos_read.php");
 
-require_once($_SERVER['DOCUMENT_ROOT'] . "/src/controller/read/maestros_read.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/src/controller/read/clases_read.php");
-
-extract($clases);
-extract($info);
+extract($alumnos);
 ?>
 
 <body>
@@ -36,12 +31,11 @@ extract($info);
                 <th class="bg-slate-700 px-5">Nombre</th>
                 <th class="bg-slate-700 px-5">Apellido</th>
                 <th class="bg-slate-700 px-5">Dirección</th>
-                <th class="bg-slate-700 px-3">Clase Asignada</th>
                 <th class="bg-slate-700 px-3">Acciones</th>
             </tr>
-            <?php foreach ($info as $persona) { ?>
+            <?php foreach ($alumnos as $persona) { ?>
                 <tr class="text-center bg-slate-100 border border-slate-700">
-                    <form action="./editar_maestros.php" method="post">
+                    <form action="./editar/editar_alumnos.php" method="post">
                         <td>
                             <input type="number" name="id_user_login" readonly value="<?php echo $persona['id_user_login']; ?>" class="bg-transparent text-center focus:outline-none w-20">
                         </td>
@@ -60,15 +54,7 @@ extract($info);
                         <td>
                             <input type="text" name="direccion" readonly value="<?php echo $persona['direccion']; ?>" class="bg-transparent text-center focus:outline-none">
                         </td>
-                                                
-                        <td><?php 
-                            foreach ($clases as $nombreClase) {
-                                if ($persona['clase_asignada'] === $nombreClase['id_clase']) {
-                                    echo $nombreClase['nombre_clase'];
-                                }
-                            }
-                        ?></td>
-                        
+                        <input type="number" name="dni" value="<?php echo $persona['dni'];?>" class="hidden">
                         <td class="flex justify-center items-center">
                             <button type="submit" class="h-7 w-7 hover:cursor-pointer">
                                 <img src="../../../PFN3/assets/edit.svg" alt="edit" class="h-full w-full">
@@ -81,8 +67,8 @@ extract($info);
         </table>
         
         <div class="w-full pt-5 flex justify-center">
-            <a href="./create/crear_maestro.php" class="bg-blue-500 font-slab text-slate-200 rounded-lg px-5 py-1 mt-2">
-                Crear Maestro
+            <a href="./create/crear_alumno.php" class="bg-blue-500 font-slab text-slate-200 rounded-lg px-5 py-1 mt-2">
+                Crear Alumno
             </a>
         </div>
 

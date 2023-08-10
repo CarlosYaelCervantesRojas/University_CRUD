@@ -12,7 +12,6 @@
 </head>
 <?php
 session_start();
-// print_r($_SESSION['usuarios']);
 extract($_SESSION);
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/src/controller/read/permisos_read.php");

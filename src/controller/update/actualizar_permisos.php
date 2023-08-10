@@ -1,12 +1,8 @@
 <?php
-    // print_r($_POST);
-
     extract($_POST);
     $correo;
     $rol = intval($rol);
     $status = intval($status);
-
-    // echo gettype($status);
 
     require_once($_SERVER['DOCUMENT_ROOT'] . "/src/model/connection_DB.php");
     
@@ -14,12 +10,6 @@
     
     try {
         $resultado = $mdb -> query($actPermiso);
-        // $info = $resultado -> fetchAll(PDO::FETCH_ASSOC);
-        
-        // session_start();
-        // $_SESSION['usuarios'] = $info;
-
-        // print_r($_SERVER);
 
         header("Location: ../../view/admin/permisos.php");
 
