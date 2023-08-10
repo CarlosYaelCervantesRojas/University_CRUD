@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;400;900&display=swap" rel="stylesheet">
     <link href="/dist/output.css" rel="stylesheet">
-    <title>Editar Maestros</title>
+    <title>Editar Maestro</title>
 </head>
 
 <body>
@@ -40,7 +40,7 @@
                     Email del maestro
                 </label>
                 <input readonly type="email" name="correo" id="email" value="
-                <?php echo $correo; ?>" class="border rounded-md pl-3 focus:outline-none">
+                <?php echo $correo; ?>" class="border rounded-md pl-3 focus:outline-none bg-gray-400">
             </div>
 
             <div class="flex flex-col">
@@ -65,12 +65,11 @@
             </div>
 
 
-            <!-- <div class="flex flex-col my-5">
+            <div class="flex flex-col my-5">
                 <label for="rol">
                     Asignar Nueva Clase
                 </label>
-                <select name="nombre_clase" class="border rounded-md">
-                    <option value="0">Nunguna</option>
+                <select name="id_clase" class="border rounded-md">
                     <?php
                     foreach ($clases as $clase) {
                     ?>
@@ -79,16 +78,39 @@
                     }
                     ?>
                 </select>
-            </div> -->
+            </div>
             <input type="number" name="id_user_login" readonly value="<?php echo $id_user_login; ?>" class="bg-transparent text-center focus:outline-none hidden">
+            <input id="inputB" type="number" name="borrar" readonly value="" class="hidden">
             <hr class="my-5">
-            <button type="submit" class="bg-blue-500 rounded-lg px-4 py-1 text-slate-100">
-                Guardar cambios
-            </button>
+            <div class="flex gap-10">
+                <button id="enviar" class="bg-blue-500 rounded-lg px-4 py-1 text-slate-100">
+                    Guardar cambios
+                </button>
+                <button id="borrar" class="h-10 w-10 bg-red-500 rounded-md">
+                    <img src="../../../PFN3/assets/delete.svg" alt="delite" class="h-full w-full">
+                </button>
+            </div>
         </form>
 
     </main>
 
 </body>
+
+                    <script>
+                        let enviar = document.getElementById('enviar');
+                        let borrar = document.getElementById('borrar');
+                        let inputB = document.getElementById('inputB');
+
+                        enviar.addEventListener('click', ()=>{
+                            enviar.setAttribute('type', 'submit');
+                            inputB.value = 0;
+                        });
+
+                        borrar.addEventListener('click', ()=>{
+                            borrar.setAttribute('type', 'submit');
+                            inputB.value = 1;
+                        });
+
+                    </script>
 
 </html>

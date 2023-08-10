@@ -14,7 +14,6 @@
 <body>
 <?php
     session_start();
-    // print_r($_SESSION);
 ?>
     <section class="h-screen w-screen bg-black flex justify-center items-center">
         <main class="rounded-3xl bg-slate-900 w-80 h-3/5 shadow-lg shadow-slate-700 flex flex-col justify-evenly items-center">

@@ -12,12 +12,13 @@
 </head>
 <?php
 session_start();
-// print_r($_SESSION);
 extract($_SESSION);
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/src/controller/read/maestros_read.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/src/controller/read/clases_read.php");
 // print_r($info);
+// print_r($clases);
+extract($clases);
 extract($info);
 ?>
 
@@ -33,8 +34,9 @@ extract($info);
             <tr class="text-slate-100">
                 <th class="bg-slate-700 px-3">ID</th>
                 <th class="bg-slate-700 px-5">Correo/Usuario</th>
+                <th class="bg-slate-700 px-5">Nombre</th>
+                <th class="bg-slate-700 px-5">Apellido</th>
                 <th class="bg-slate-700 px-5">Dirección</th>
-                <th class="bg-slate-700 px-5">Fec. Nacimiento</th>
                 <th class="bg-slate-700 px-3">Clase Asignada</th>
                 <th class="bg-slate-700 px-3">Acciones</th>
             </tr>
@@ -48,31 +50,42 @@ extract($info);
                         <td>
                             <input type="email" name="correo" readonly value="<?php echo $persona['correo']; ?>" class="bg-transparent text-center focus:outline-none">
                         </td>
+
+                        <td>
+                            <input type="text" name="nombre" readonly value="<?php echo $persona['nombre']; ?>" class="bg-transparent text-center focus:outline-none">
+                        </td>
+                        <td>
+                        <input type="text" name="apellido" readonly value="<?php echo $persona['apellido']; ?>" class="bg-transparent text-center focus:outline-none">
+                        </td>
                         
                         <td>
                             <input type="text" name="direccion" readonly value="<?php echo $persona['direccion']; ?>" class="bg-transparent text-center focus:outline-none">
                         </td>
-                        
-                        <td>
-                            <input type="date" name="nacimiento" readonly value="<?php echo $persona['nacimiento']; ?>" class="bg-transparent text-center focus:outline-none">
-                        </td>
-                        
-                        <td><?php echo $persona['nombre_clase']; ?></td>
+                                                
+                        <td><?php 
+                            foreach ($clases as $nombreClase) {
+                                if ($persona['clase_asignada'] === $nombreClase['id_clase']) {
+                                    echo $nombreClase['nombre_clase'];
+                                }
+                            }
+                        ?></td>
                         
                         <td class="flex justify-center items-center">
                             <button type="submit" class="h-7 w-7 hover:cursor-pointer">
                                 <img src="../../../PFN3/assets/edit.svg" alt="edit" class="h-full w-full">
                             </button>
                         </td>
-                        <input type="number" name="id_user_login" readonly value="<?php echo $persona['id_user_login']; ?>" class="bg-transparent text-center focus:outline-none hidden">
-                        <input type="text" name="nombre" readonly value="<?php echo $persona['nombre']; ?>" class="bg-transparent text-center focus:outline-none hidden">
-                        <input type="text" name="apellido" readonly value="<?php echo $persona['apellido']; ?>" class="bg-transparent text-center focus:outline-none hidden">
-                        <input type="number" name="num" readonly value="<?php echo $numClases; ?>" class="bg-transparent text-center focus:outline-none hidden">
                     </form>
                 </tr>
             <?php } ?>
 
         </table>
+        
+        <div class="w-full pt-5 flex justify-center">
+            <a href="./create/crear_maestro.php" class="bg-blue-500 font-slab text-slate-200 rounded-lg px-5 py-1 mt-2">
+                Crear Maestro
+            </a>
+        </div>
 
     </main>
 </body>
